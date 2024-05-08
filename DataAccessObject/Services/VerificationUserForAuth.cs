@@ -16,12 +16,12 @@ namespace HotelSelect.DataAccessObject.Services
             {
                 sqlConnection.Open();
 
-                string sqlQueryCheckExistUser = "SELECT * FROM Users WHERE login = @login AND password = @password";
+                string sqlQueryCheckExistUser = "SELECT * FROM Users WHERE login = @login ";
 
                 SqlCommand sqlCommandCheckExistUser = new SqlCommand(sqlQueryCheckExistUser, sqlConnection);
 
                 sqlCommandCheckExistUser.Parameters.AddWithValue("@login", user.Login);
-                sqlCommandCheckExistUser.Parameters.AddWithValue("@password", user.Password);
+//                sqlCommandCheckExistUser.Parameters.AddWithValue("@password", user.Password);
 
                 int count = Convert.ToInt32(sqlCommandCheckExistUser.ExecuteScalar());
 

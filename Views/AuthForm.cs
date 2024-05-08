@@ -35,6 +35,7 @@ namespace HotelSelect
                 return;
             }
 
+
             Security.Security sec = new Security.Security();
 
             if (sec.AuthUser(user)) {

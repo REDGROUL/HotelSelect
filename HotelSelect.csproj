@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="PhoneNumbers, Version=8.13.34.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\libphonenumber-csharp.8.13.34\lib\netstandard2.0\PhoneNumbers.dll</HintPath>
     </Reference>
