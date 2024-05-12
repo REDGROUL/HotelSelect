@@ -4,6 +4,7 @@ using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using HotelSelect.Dao.repository;
+using BCrypt.Net;
 using System.Data;
 
 namespace HotelSelect.Dao.impl
@@ -21,12 +22,12 @@ namespace HotelSelect.Dao.impl
         {
             sqlConnection.Open();
 
-            string sqlQueryFindUser = "SELECT * FROM Users WHERE login = @login AND password = @password";
+            string sqlQueryFindUser = "SELECT * FROM Users WHERE login = @login";
 
             SqlCommand sqlCommandFindUser = new SqlCommand(sqlQueryFindUser, sqlConnection);
 
             sqlCommandFindUser.Parameters.Add("@login", System.Data.SqlDbType.VarChar).Value = user.Login;
-            sqlCommandFindUser.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = user.Password;
+           //qlCommandFindUser.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = user.Password;
 
             SqlDataReader sqlDataReader = sqlCommandFindUser.ExecuteReader();
 
@@ -52,6 +53,11 @@ namespace HotelSelect.Dao.impl
                     findedUser.Email       = (string)sqlDataReader.GetValue(10);
                 }
 
+               
+                if (BCrypt.Net.BCrypt.EnhancedVerify(user.Password, findedUser.Password))
+                {
+                    MessageBox.Show("ok");
+                }
                 sqlConnection.Close();
                 return findedUser;
             }
@@ -80,7 +86,8 @@ namespace HotelSelect.Dao.impl
                 sqlCommandSaveUser.Parameters.Add("@patronymic", System.Data.SqlDbType.VarChar).Value = user.FullName.Patronymic;
                 sqlCommandSaveUser.Parameters.Add("@date_of_birth", System.Data.SqlDbType.Date).Value = user.DateOfBirth;
                 sqlCommandSaveUser.Parameters.Add("@login", System.Data.SqlDbType.VarChar).Value = user.Login;
-                sqlCommandSaveUser.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = user.Password;
+                string pass = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Password);
+                sqlCommandSaveUser.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = pass;
                 sqlCommandSaveUser.Parameters.Add("@phone_number", System.Data.SqlDbType.VarChar).Value = user.PhoneNumber;
                 sqlCommandSaveUser.Parameters.Add("@email", System.Data.SqlDbType.VarChar).Value = user.Email;
 

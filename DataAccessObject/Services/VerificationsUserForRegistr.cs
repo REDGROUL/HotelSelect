@@ -60,32 +60,33 @@ namespace HotelSelect.Dao.service
         {
             SqlConnection sqlConnection = ConnectorDataBaseMicrosoftSQL.StartConnection().SqlConnection;
 
-            try
-            {
-                sqlConnection.Open();
+            return true;
+            //try
+            //{
+            //    sqlConnection.Open();
 
-                string sqlQueryCheckExistUser = "SELECT * FROM Users WHERE phone_number = @phoneNumber " +
-                                                "OR email = @email OR login = @login";
+            //    string sqlQueryCheckExistUser = "SELECT * FROM Users WHERE phone_number = @phoneNumber " +
+            //                                    "OR email = @email OR login = @login";
 
-                SqlCommand sqlCommandCheckExistUser = new SqlCommand(sqlQueryCheckExistUser, sqlConnection);
+            //    SqlCommand sqlCommandCheckExistUser = new SqlCommand(sqlQueryCheckExistUser, sqlConnection);
 
-                sqlCommandCheckExistUser.Parameters.AddWithValue("@phoneNumber", user.PhoneNumber);
-                sqlCommandCheckExistUser.Parameters.AddWithValue("@email", user.Email);
-                sqlCommandCheckExistUser.Parameters.AddWithValue("@login", user.Login);
+            //    sqlCommandCheckExistUser.Parameters.AddWithValue("@phoneNumber", user.PhoneNumber);
+            //    sqlCommandCheckExistUser.Parameters.AddWithValue("@email", user.Email);
+            //    sqlCommandCheckExistUser.Parameters.AddWithValue("@login", user.Login);
 
-                int count = Convert.ToInt32(sqlCommandCheckExistUser.ExecuteScalar());
+            //    int count = Convert.ToInt32(sqlCommandCheckExistUser.ExecuteScalar());
 
-                return count == 0;
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("Произошла ошибка при работе с базой данных: " + e.Message);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Произошла ошибка: " + ex.Message);
-            }
-            finally { sqlConnection.Close(); }
+            //    return count == 0;
+            //}
+            //catch (SqlException e)
+            //{
+            //    throw new Exception("Произошла ошибка при работе с базой данных: " + e.Message);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Произошла ошибка: " + ex.Message);
+            //}
+            //finally { sqlConnection.Close(); }
         }
     }
 }
