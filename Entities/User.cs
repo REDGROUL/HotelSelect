@@ -9,6 +9,7 @@ namespace HotelSelect.Entity
         public string Patronymic { get; set; }
     }
 
+    //сделать любое изменение проекта у себя и отправить мне pull request
     public class User
     {
         public long Id { get; set; }

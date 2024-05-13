@@ -77,6 +77,12 @@
     <Compile Include="DataAccessObject\Interfaces\IServiceDAO.cs" />
     <Compile Include="DataAccessObject\Services\UniversalMethodsCheckIsEmptyAndSelected.cs" />
     <Compile Include="DataAccessObject\Services\VerificationUserForAuth.cs" />
+    <Compile Include="Views\CreatHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CreatHotel.Designer.cs">
+      <DependentUpon>CreatHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PersonalAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <Compile Include="Security\UserSession.cs" />
     <EmbeddedResource Include="Views\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreatHotel.resx">
+      <DependentUpon>CreatHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\HotelAdd.resx">
       <DependentUpon>HotelAdd.cs</DependentUpon>
